@@ -67,12 +67,9 @@ namespace ConsoleApp1.Functions
 
         public  async Task<string> LlamadaGetApi(string baseurl, string metodo, Dictionary<string, string> Datos)
         {
-            
             string respuesta = string.Empty; 
-
             try
             {
-
                 using (HttpClient _client = new HttpClient())
                 {
                     
@@ -89,19 +86,14 @@ namespace ConsoleApp1.Functions
                         {
                             Params = Params + "&" + dat.Key + "=" + dat.Value;
                         }
-
                     }
-                   
-
                     _client.BaseAddress = new Uri(baseurl);
                     HttpResponseMessage response = await _client.GetAsync(metodo + "?" + Params);
                     if(response.IsSuccessStatusCode)
                     {
                         respuesta = await response.Content.ReadAsStringAsync();
                     }
-
                     return respuesta;
-
                 }
             }
             catch(Exception ex)
@@ -112,7 +104,4 @@ namespace ConsoleApp1.Functions
     }
 }
 
-
-
-//https://jsonplaceholder.typicode.com/comments?postId=1&id=2
 
